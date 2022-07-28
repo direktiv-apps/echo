@@ -1,0 +1,12 @@
+url: ""
+functions:
+- type: knative-workflow
+  id: echo
+  image: gcr.io/direktiv/apps/echo:test
+states:
+- id: state0
+  type: action
+  action:
+    function: echo
+    input:
+      hello: world
