@@ -5,7 +5,7 @@ Echo JSON
 
 ---
 - #### Categories: misc
-- #### Image: direktiv.azurecr.io/functions/echo 
+- #### Image: gcr.io/direktiv/functions/echo 
 - #### License: [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - #### Issue Tracking: https://github.com/direktiv-apps/echo/issues
 - #### URL: https://github.com/direktiv-apps/echo
@@ -21,7 +21,7 @@ This function is echoing the JSON coming in. Please be aware that this can inclu
 ```yaml
 functions:
 - id: echo
-  image: direktiv.azurecr.io/functions/echo:1.0
+  image: gcr.io/direktiv/functions/echo:1.0
   type: knative-workflow
 ```
    #### Basic

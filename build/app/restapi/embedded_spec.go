@@ -36,7 +36,7 @@ func init() {
       "categories": [
         "misc"
       ],
-      "container": "direktiv.azurecr.io/functions/echo",
+      "container": "gcr.io/direktiv/functions/echo",
       "issues": "https://github.com/direktiv-apps/echo/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
       "long-description": "This function is echoing the JSON coming in. Please be aware that this can include secrets in plain text if they are in the payload. This function is for debugging. ",
@@ -117,7 +117,7 @@ func init() {
             "title": "Basic"
           }
         ],
-        "x-direktiv-function": "functions:\n- id: echo\n  image: direktiv.azurecr.io/functions/echo:1.0\n  type: knative-workflow"
+        "x-direktiv-function": "functions:\n- id: echo\n  image: gcr.io/direktiv/functions/echo:1.0\n  type: knative-workflow"
       },
       "delete": {
         "parameters": [
@@ -185,7 +185,7 @@ func init() {
       "categories": [
         "misc"
       ],
-      "container": "direktiv.azurecr.io/functions/echo",
+      "container": "gcr.io/direktiv/functions/echo",
       "issues": "https://github.com/direktiv-apps/echo/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
       "long-description": "This function is echoing the JSON coming in. Please be aware that this can include secrets in plain text if they are in the payload. This function is for debugging. ",
@@ -266,7 +266,7 @@ func init() {
             "title": "Basic"
           }
         ],
-        "x-direktiv-function": "functions:\n- id: echo\n  image: direktiv.azurecr.io/functions/echo:1.0\n  type: knative-workflow"
+        "x-direktiv-function": "functions:\n- id: echo\n  image: gcr.io/direktiv/functions/echo:1.0\n  type: knative-workflow"
       },
       "delete": {
         "parameters": [

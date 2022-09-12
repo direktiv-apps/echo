@@ -4,7 +4,7 @@ info:
   title: echo
   version: "1.0"
   x-direktiv-meta:
-    container: direktiv.azurecr.io/functions/echo
+    container: gcr.io/direktiv/functions/echo
     maintainer: |-
       [direktiv.io](https://www.direktiv.io) 
     issues: https://github.com/direktiv-apps/echo/issues
@@ -61,7 +61,7 @@ paths:
       x-direktiv-function: |-
         functions:
         - id: echo
-          image: direktiv.azurecr.io/functions/echo:1.0
+          image: gcr.io/direktiv/functions/echo:1.0
           type: knative-workflow
       x-direktiv-examples:
         - title: Basic
