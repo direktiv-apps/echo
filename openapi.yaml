@@ -1,0 +1,106 @@
+openapi: 3.0.1
+info:
+  title: echo
+  description: Echo JSON
+  version: "1.0"
+  x-direktiv-meta:
+    container: gcr.io/direktiv/functions/echo
+    maintainer: "[direktiv.io](https://www.direktiv.io) "
+    issues: https://github.com/direktiv-apps/echo/issues
+    url: https://github.com/direktiv-apps/echo
+    categories:
+    - misc
+    license: "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)"
+    long-description: 'This function is echoing the JSON coming in. Please be aware
+      that this can include secrets in plain text if they are in the payload. This
+      function is for debugging. '
+servers:
+- url: /
+paths:
+  /:
+    post:
+      parameters:
+      - name: Direktiv-ActionID
+        in: header
+        description: "direktiv action id is an UUID. \nFor development it can be set\
+          \ to 'development'\n"
+        schema:
+          type: string
+          default: development
+      - name: Direktiv-TempDir
+        in: header
+        description: |
+          direktiv temp dir is the working directory for that request
+          For development it can be set to e.g. '/tmp'
+        schema:
+          type: string
+          default: /tmp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+        required: false
+      responses:
+        "200":
+          description: Echo of request
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+            hello:
+              example: world
+        default:
+          description: generic error response
+          headers:
+            Direktiv-ErrorMessage:
+              schema:
+                type: string
+            Direktiv-ErrorCode:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      x-direktiv-function: |-
+        functions:
+        - id: echo
+          image: gcr.io/direktiv/functions/echo:1.0
+          type: knative-workflow
+      x-direktiv-examples:
+      - title: Basic
+        content: "- id: echo\n  type: action\n  action:\n    function: echo\n    input:\
+          \ \n      hello: world"
+      x-direktiv:
+        cmds:
+        - action: exec
+          exec: "echo '{{ .In | toJson }}'"
+        output: |
+          {{ index (index . 0) "result"  | toJson }}
+      x-direktiv-errors:
+        io.direktiv.command.error: Command execution failed
+        io.direktiv.output.error: Template error for output generation of the service
+        io.direktiv.ri.error: Can not create information object from request
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    direktivFile:
+      type: object
+      x-go-type:
+        type: DirektivFile
+        import:
+          package: github.com/direktiv/apps/go/pkg/apps
+    error:
+      required:
+      - errorCode
+      - errorMessage
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
